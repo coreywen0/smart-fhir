@@ -14,7 +14,6 @@ export class PatientOverviewComponent implements OnInit {
   patient: PatientModel;
 
   constructor(private patientService: PatientService,
-              private router: Router,
   ) {
   }
 
@@ -24,11 +23,6 @@ export class PatientOverviewComponent implements OnInit {
         this.patient = resp;
         this.isLoading = false;
       });
-  }
-
-  testClick(): void {
-    console.log('test click');
-    // this.router.navigateByUrl('http://127.0.0.1:8080/launch.html?launch=eyJhIjoiMSJ9&iss=https%3A%2F%2Flaunch.smarthealthit.org%2Fv%2Fr4%2Ffhir');
   }
 
 }

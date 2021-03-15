@@ -3,4 +3,6 @@ export interface AllergenIntoleranceModel {
   description: string;
   criticality: string;
   category: string;
+  code: string;
+  recordedDate: string;
 }

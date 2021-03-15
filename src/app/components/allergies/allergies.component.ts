@@ -16,8 +16,8 @@ export class AllergiesComponent implements OnInit {
 
   isLoading = true;
 
-  constructor(private router: Router,
-              private allergyService: AllergyService,
+  constructor(
+    private allergyService: AllergyService,
   ) {
   }
 
@@ -25,24 +25,8 @@ export class AllergiesComponent implements OnInit {
     this.allergyService.getAllergies()
       .then(resp => {
         this.allergies = resp;
-        console.log('this.allergies');
-        console.log(this.allergies);
         this.isLoading = false;
       });
-  }
-
-  async getData(): Promise<void> {
-    const clientData: any = await fhir.oauth2.ready().catch(console.error);
-    console.log(clientData);
-    const patientData = await clientData.patient.read();
-    console.log(patientData);
-    const allergiesData = await clientData.request(
-      `/AllergyIntolerance?patient=${patientData.id}`,
-      {flat: true}
-    );
-    console.log('allergies');
-    console.log(allergiesData);
-
   }
 
 }

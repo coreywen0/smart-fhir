@@ -1,10 +1,11 @@
 <div>
   <p *ngIf="isLoading">Patient info loading...</p>
   <div *ngIf="!isLoading">
+    <h1>Patient Overview</h1>
     <p>Name: {{patient.name}}</p>
+    <p *ngIf="patient.otherNames.length > 0">Other Aliases: <span *ngFor="let otherName of patient.otherNames">{{otherName}}, </span></p>
     <p>Gender: {{patient.gender}}</p>
     <p>Birthdate: {{patient.birthDate}}</p>
     <app-allergies></app-allergies>
   </div>
-  <button (click)="testClick()">Choose New Patient</button>
 </div>

@@ -16,20 +16,29 @@ export class PatientService {
   async getPatientData(): Promise<any> {
     const client: any = await fhir.oauth2.ready().catch(console.error);
     const patient = await client.patient.read();
-    console.log('getPatient from patient.service');
-    console.log(patient);
     return patient;
   }
 
   async getPatient(): Promise<PatientModel> {
     const patientData = await this.getPatientData();
-    const nameData = patientData.name[0];
+
+    const nameData = patientData.name as [];
+    let officialName = null;
+    const otherNames = [];
+    nameData.forEach((curNameData: any) => {
+      const name = `${curNameData.prefix ?? ''} ${curNameData.given[0]} ${curNameData.family}`;
+      if (curNameData.use === 'official') {
+        officialName = name;
+      } else {
+        otherNames.push(name);
+      }
+    });
     const patient: PatientModel = {
       id: patientData.id,
       birthDate: patientData.birthDate,
       gender: patientData.gender,
-      name: `${nameData.prefix} ${nameData.given[0]} ${nameData.family}`,
-      otherNames: [],
+      name: officialName ?? 'No name found',
+      otherNames,
     };
     return patient;
   }
