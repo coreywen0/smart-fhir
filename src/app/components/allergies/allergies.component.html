@@ -1,2 +1,3 @@
-<p>allergies works!</p>
-<button (click)="testClick()">choose another patient</button>
+<p *ngIf="isLoading">Loading...</p>
+<p *ngIf="!isLoading && allergies.length == 0">This patient has no allergies</p>
+<app-allergen-intolerance *ngFor="let curAllergy of allergies" [allergenIntolernce]="curAllergy"></app-allergen-intolerance>

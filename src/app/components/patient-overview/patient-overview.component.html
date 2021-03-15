@@ -1,0 +1,10 @@
+<div>
+  <p *ngIf="isLoading">Patient info loading...</p>
+  <div *ngIf="!isLoading">
+    <p>Name: {{patient.name}}</p>
+    <p>Gender: {{patient.gender}}</p>
+    <p>Birthdate: {{patient.birthDate}}</p>
+    <app-allergies></app-allergies>
+  </div>
+  <button (click)="testClick()">Choose New Patient</button>
+</div>

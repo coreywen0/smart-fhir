@@ -9,12 +9,14 @@ import { HomeComponent } from './components/home/home.component';
 import { LaunchComponent } from './components/launch/launch.component';
 import { AllergiesComponent } from './components/allergies/allergies.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AllergenIntoleranceComponent } from './components/allergen-intolerance/allergen-intolerance.component';
+import { PatientOverviewComponent } from './components/patient-overview/patient-overview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'test1', component: Test1Component },
   { path: 'home', component: Test2Component },
-  { path: 'allergies', component: AllergiesComponent },
+  { path: 'patient-overview', component: PatientOverviewComponent },
   { path: 'launch', component: LaunchComponent },
   { path: '**', component: LaunchComponent },
 ];
@@ -26,7 +28,9 @@ const routes: Routes = [
     Test2Component,
     HomeComponent,
     LaunchComponent,
-    AllergiesComponent
+    AllergiesComponent,
+    AllergenIntoleranceComponent,
+    PatientOverviewComponent
   ],
   imports: [
     BrowserModule,
