@@ -21,13 +21,12 @@ export class PatientService {
 
   async getPatient(): Promise<PatientModel> {
     const patientData = await this.getPatientData();
-
     const nameData = patientData.name as [];
-    let officialName = null;
+    let officialName = 'No official name found';
     const otherNames = [];
     nameData.forEach((curNameData: any) => {
       const name = `${curNameData.prefix ?? ''} ${curNameData.given[0]} ${curNameData.family}`;
-      if (curNameData.use === 'official') {
+      if (curNameData?.use === 'official') {
         officialName = name;
       } else {
         otherNames.push(name);
@@ -37,7 +36,7 @@ export class PatientService {
       id: patientData.id,
       birthDate: patientData.birthDate,
       gender: patientData.gender,
-      name: officialName ?? 'No name found',
+      name: officialName,
       otherNames,
     };
     return patient;
