@@ -13,6 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +31,8 @@ const routes: Routes = [
     AllergiesComponent,
     AllergenIntoleranceComponent,
     PatientOverviewComponent,
-    HeaderComponent
+    HeaderComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ const routes: Routes = [
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

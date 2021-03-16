@@ -18,7 +18,7 @@ export class LaunchComponent implements OnInit {
       clientId: 'my_web_app',
       redirectUri: this.REDIRECT_URI,
       scope: 'launch openid fhirUser patient/*.read',
-    }).catch(console.error);
+    });
   }
 
 }

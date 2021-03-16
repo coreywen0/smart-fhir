@@ -17,9 +17,7 @@ export class AllergyService {
   }
 
   async getAllergyData(): Promise<JsonObject[]> {
-    const client: any = await fhir.oauth2
-      .ready()
-      .catch(console.error);
+    const client: any = await fhir.oauth2.ready();
     const patient = await client.patient.read();
     const allergies = await client.request(
       `${this.ALLERGY_PATH}${patient.id}`,

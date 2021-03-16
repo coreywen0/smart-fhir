@@ -14,7 +14,7 @@ export class PatientService {
   }
 
   async getPatientData(): Promise<any> {
-    const client: any = await fhir.oauth2.ready().catch(console.error);
+    const client: any = await fhir.oauth2.ready();
     const patient = await client.patient.read();
     return patient;
   }
