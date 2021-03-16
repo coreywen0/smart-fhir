@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import Client from 'fhirclient/lib/Client';
 import {fhirclient} from 'fhirclient/lib/types';
-import Patient = fhirclient.FHIR.Patient;
 import JsonObject = fhirclient.JsonObject;
 import * as fhir from 'fhirclient';
 import {AllergenIntoleranceModel} from '../models/allergen-intolerance.model';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,10 @@ import {AllergenIntoleranceModel} from '../models/allergen-intolerance.model';
 export class AllergyService {
 
   private ALLERGY_PATH = '/AllergyIntolerance?patient=';
+
+  private allergies: AllergenIntoleranceModel[] = [];
+  private filteredAllergies: AllergenIntoleranceModel[] = [];
+  private filteredAllergiesUpdated = new Subject<AllergenIntoleranceModel[]>();
 
   constructor() {
   }
@@ -39,7 +42,25 @@ export class AllergyService {
       };
       return allergen;
     });
+    this.allergies = allergies;
+    this.filteredAllergiesUpdated.next(this.allergies.slice());
     return allergies;
+  }
+
+  getAllergiesFiltered(filterString: string): void {
+    if (!filterString?.trim()) {
+      this.filteredAllergiesUpdated.next(this.allergies.slice());
+      return;
+    }
+    const filteredAllergies = this.allergies.filter((allergy) => {
+      return allergy.description.includes(filterString);
+    });
+    this.filteredAllergies = filteredAllergies;
+    this.filteredAllergiesUpdated.next(filteredAllergies.slice());
+  }
+
+  getAllergiesUpdateListener(): Observable<AllergenIntoleranceModel[]> {
+    return this.filteredAllergiesUpdated.asObservable();
   }
 
 }

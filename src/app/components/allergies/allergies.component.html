@@ -1,4 +1,21 @@
 <p *ngIf="isLoading">Loading...</p>
 <h1>Allergies Overview</h1>
-<p *ngIf="!isLoading && allergies.length == 0">This patient has no allergies</p>
-<app-allergen-intolerance *ngFor="let curAllergy of allergies" [allergenIntolernce]="curAllergy"></app-allergen-intolerance>
+<button class="btn-primary" (click)="resetFilter(); onSubmit()">Reset Filter</button>
+<form (ngSubmit)="onSubmit()" #formElement="ngForm">
+  <div class="form-group">
+    <mat-form-field class="example-full-width">
+      <mat-label>Filter Description By:</mat-label>
+      <input matInput
+             placeholder="Press ENTER to filter"
+             type="text"
+             name="filterStr"
+             ngModel=""
+             (click)="resetFilter()"
+      >
+    </mat-form-field>
+  </div>
+</form>
+<p *ngIf="!isLoading && !hasAllergies">This patient has no allergies</p>
+<p *ngIf="allergies.length <= 0 && hasAllergies">0 results for filter</p>
+<app-allergen-intolerance *ngFor="let curAllergy of allergies"
+                          [allergenIntolernce]="curAllergy"></app-allergen-intolerance>

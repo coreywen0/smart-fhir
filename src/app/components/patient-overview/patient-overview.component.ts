@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PatientService} from '../../services/patient.service';
 import {PatientModel} from '../../models/patient.model';
-import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {ErrorDialogComponent} from '../error-dialog/error-dialog.component';
 
@@ -21,6 +20,7 @@ export class PatientOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.patientService.getPatient()
       .then(resp => {
         this.patient = resp;
