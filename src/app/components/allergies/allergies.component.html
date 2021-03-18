@@ -19,3 +19,4 @@
 <p *ngIf="allergies.length <= 0 && hasAllergies">0 results for filter</p>
 <app-allergen-intolerance *ngFor="let curAllergy of allergies"
                           [allergenIntolernce]="curAllergy"></app-allergen-intolerance>
+<app-allergen-table></app-allergen-table>

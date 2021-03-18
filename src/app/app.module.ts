@@ -18,6 +18,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import { AllergenTableComponent } from './components/allergen-table/allergen-table.component';
+import {MatSortModule} from '@angular/material/sort';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +38,8 @@ const routes: Routes = [
     AllergenIntoleranceComponent,
     PatientOverviewComponent,
     HeaderComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    AllergenTableComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatTableModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
